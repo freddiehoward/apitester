@@ -9,26 +9,36 @@ import SwiftUI
 
 struct ContentView: View {
     
-        @State private var search: String = ""
+    /*
+    @State private var search: String = ""
+    @State private var results: [ApiResult] = []
     
-        @State private var results: [ApiResult] = []
-        
-        @State private var searchId: String = ""
-        
-        @ObservedObject var apiManager = ApiManager.shared
-        
+    @State private var searchId: String = ""
+     */
+    
+    @ObservedObject var apiManager = ApiManager.shared
+    
+    @State var result: CatFact
+    
+    
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        VStack{
+            Text("hello")
+            Text("")
+            Button(action: {apiManager.completionHandler(completion: {result in
+                self.result = result})}, label: {
+                    Text("press me")
+                })
+            
+            
+            Text("\(result)")
+            
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
-}
+    ContentView(result: sampleFact)
+    }
